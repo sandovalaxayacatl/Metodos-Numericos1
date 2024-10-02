@@ -1,0 +1,136 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPDLqDTizPNbuxfJfPqZRTj",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sandovalaxayacatl/Metodos-Numericos1/blob/main/Punto%20fijo\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 18,
+      "metadata": {
+        "id": "nmoX1YzycsEO"
+      },
+      "outputs": [],
+      "source": [
+        "#PROGRAMA PUNTO FIJO - Sandoval Hernandez Irving Axayacatl - 3MM1\n",
+        "from math import *\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#defenir la funcion g(x) que usaremos en el punto fijo\n",
+        "def g(x):\n",
+        "  #aqui defines tu funcion de iteracion g(x)\n",
+        "  return (x+1)**(1/3)\n",
+        "  #return ((10)/(4+x))**(1/2)"
+      ],
+      "metadata": {
+        "id": "-8Yy9OoDctCX"
+      },
+      "execution_count": 19,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#parametros de entrada\n",
+        "p0 = 1 #valor inicial de p\n",
+        "tol = 0.0000001 #tolerancia\n",
+        "nmax = 100 #numero maximo de iteraciones"
+      ],
+      "metadata": {
+        "id": "9Zyno-fPctGP"
+      },
+      "execution_count": 20,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#inicializar variables\n",
+        "error = 100\n",
+        "niter = 0\n",
+        "p = p0"
+      ],
+      "metadata": {
+        "id": "yJLqOwPvctIl"
+      },
+      "execution_count": 21,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"#iter\\t\\ p \\t\\t g(p) \\t\\t error\")\n",
+        "print(\"{0}\\t\\t {1:6.6f} \\t {2:6.6f} \\t {3:6.6f}\".format(niter,p,g(p),error))\n",
+        "\n",
+        "#ciclo iterativo del metodo de punto fijo\n",
+        "while error > tol and niter < nmax:\n",
+        "  niter += 1  #incrementando el contador de iteraciones\n",
+        "  p_ant = p   #guardando el valor anterior de p\n",
+        "  p = g(p)    #calcular nuevo valor de p apartir de g(p)\n",
+        "  error = abs(p-p_ant) #calcular el valor como la diferencia de iteraciones\n",
+        "\n",
+        "  #imprimir los resultados de la iteracion\n",
+        "  print(\"{0}\\t\\t {1:6.6f} \\t {2:6.6f} \\t {3:6.6f}\".format(niter,p,g(p),error))\n",
+        "\n",
+        "#imprimir el resultado final\n",
+        "print(\"La aproximacion de la raiz es:{0:6.7f} despues de {1} iteraciones\".format(p,niter))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "IP1DKeFUctJj",
+        "outputId": "56709bf1-3b25-4a15-d837-c62c3c05b6c3"
+      },
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "#iter\t\\ p \t\t g(p) \t\t error\n",
+            "0\t\t 1.000000 \t 1.259921 \t 100.000000\n",
+            "1\t\t 1.259921 \t 1.312294 \t 0.259921\n",
+            "2\t\t 1.312294 \t 1.322354 \t 0.052373\n",
+            "3\t\t 1.322354 \t 1.324269 \t 0.010060\n",
+            "4\t\t 1.324269 \t 1.324633 \t 0.001915\n",
+            "5\t\t 1.324633 \t 1.324702 \t 0.000364\n",
+            "6\t\t 1.324702 \t 1.324715 \t 0.000069\n",
+            "7\t\t 1.324715 \t 1.324717 \t 0.000013\n",
+            "8\t\t 1.324717 \t 1.324718 \t 0.000002\n",
+            "9\t\t 1.324718 \t 1.324718 \t 0.000000\n",
+            "10\t\t 1.324718 \t 1.324718 \t 0.000000\n",
+            "La aproximacion de la raiz es:1.3247179 despues de 10 iteraciones\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
